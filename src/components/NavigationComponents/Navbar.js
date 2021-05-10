@@ -17,7 +17,7 @@ const useStyles =  makeStyles((theme) => ({
 export const Navbar = ({setOpen}) => {
     const classes = useStyles()
     return (
-        <AppBar position="static" color="secondary">
+        <AppBar position="static" color="primary">
             <Toolbar>
             <IconButton edge="start" className={classes.menuButton} onClick={() => setOpen(true)}  color="inherit"> 
                 <MenuIcon />
