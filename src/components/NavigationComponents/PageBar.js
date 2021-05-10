@@ -24,7 +24,7 @@ export const PageBar = ({title,buttonRequired}) => {
                
             
                 {(
-                 buttonRequired&&(<Button component={Link} to="/shifts" color="secondary" variant="contained">
+                 buttonRequired&&(<Button component={Link} to="/shifts" color="primary" variant="contained">
                     Generate new Shift
                 </Button>))}
                 

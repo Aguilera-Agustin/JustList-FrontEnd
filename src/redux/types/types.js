@@ -5,4 +5,9 @@ export const types ={
     authEndLoading : '[AUTH] End Loading',
     authRegister:'[AUTH] Register',
     authCheckingEnd: '[AUTH] Checking End',
+
+    catStartLoading : '[CATEGORY] Start Loading',
+    catEndLoading : '[CATEGORY] End Loading',
+    catRetrieveCategories: '[CATEGORY] Retrieve all categories from user'
+    
 }
