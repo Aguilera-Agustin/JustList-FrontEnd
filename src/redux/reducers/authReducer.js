@@ -24,6 +24,11 @@ const authReducer = (state= initialState, action) => {
                 ...state,
                 loading:false
             }
+        case types.authCheckingEnd:
+            return{
+                ...state,
+                checking:false
+            }
         default:
             return state;
     }
