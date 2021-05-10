@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2'
-import { fetchWithoutToken } from '../../helpers/callApi'
+import { fetchWithoutToken, fetchWithToken } from '../../helpers/callApi'
 import { types } from '../types/types'
 
 
@@ -72,3 +72,20 @@ export const startRegister = ({name,email,password, passwordAgain}) =>{
         }
     }
 }
+
+export const startLoginWithToken = () =>{
+    return async (dispatch)=>{
+        const res = await fetchWithToken('auth/login/token')
+        const body = await res.json()
+        dispatch(loading('END'))
+        if(res.status===200){
+            dispatch(checkingEnd())
+            dispatch(login(body))
+            console.log("Se reenderizó el login con token");
+        }
+    }
+}
+
+export const checkingEnd = ()=>({
+    type: types.authCheckingEnd
+})

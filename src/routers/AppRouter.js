@@ -1,19 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import {
     BrowserRouter as Router,
-    Redirect,
     Route,
     Switch
   } from "react-router-dom";
 import { AuthPage } from '../containers/Auth/AuthPage';
 import { HomePage } from '../containers/Home/HomePage';
+import { startLoginWithToken } from '../redux/actions/authActions';
 
   
   export const AppRouter = () => {
-      const authenticated = false;
+      const dispatch = useDispatch() 
+      const auth = useSelector(state => state.auth)
+      useEffect(() => {
+          if(localStorage.getItem('token')){
+              dispatch(startLoginWithToken())
+          }
+      }, [dispatch])
       return (
         <Router>
-            {authenticated?(
+            {auth.email?(
                 <Switch>
                     <Route path="/"  component={HomePage}/>
                 </Switch>
@@ -21,7 +28,6 @@ import { HomePage } from '../containers/Home/HomePage';
             :(
                 <Switch>
                     <Route path="/login"  component={AuthPage}/>
-                    <Redirect to="/login" />
                 </Switch>
             )
             }
