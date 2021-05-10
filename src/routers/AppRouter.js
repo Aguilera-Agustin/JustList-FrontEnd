@@ -5,6 +5,7 @@ import {
     Route,
     Switch
   } from "react-router-dom";
+import { NavDrawer } from '../components/NavigationComponents/NavDrawer';
 import { AuthPage } from '../containers/Auth/AuthPage';
 import { HomePage } from '../containers/Home/HomePage';
 import { startLoginWithToken } from '../redux/actions/authActions';
@@ -21,9 +22,12 @@ import { startLoginWithToken } from '../redux/actions/authActions';
       return (
         <Router>
             {auth.email?(
+                <>
+                <NavDrawer/>
                 <Switch>
                     <Route path="/"  component={HomePage}/>
                 </Switch>
+                </>
             )
             :(
                 <Switch>
