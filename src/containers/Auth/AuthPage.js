@@ -4,7 +4,6 @@ import { AuthForm } from '../../components/AuthComponents/AuthForm';
 
 const useStyles = makeStyles((theme)=>({
     container:{
-        position: 'absolute',
         width: '100vw',
         height:'100vh',
         background: 'url(https://www.wallpapertip.com/wmimgs/38-385748_material-design.png)',
