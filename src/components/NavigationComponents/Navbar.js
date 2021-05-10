@@ -25,7 +25,6 @@ export const Navbar = ({setOpen}) => {
             <Typography variant="h6" className={classes.title}>
                 JUST LIST
             </Typography>
-            <Button component={Link} to="/shifts" color="inherit">New Shift</Button>
             </Toolbar>
         </AppBar>
     )
