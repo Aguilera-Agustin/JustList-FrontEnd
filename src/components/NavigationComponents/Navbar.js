@@ -1,7 +1,6 @@
 import React from 'react'
-import { AppBar, Button, IconButton, makeStyles, Toolbar, Typography } from '@material-ui/core'
+import { AppBar, IconButton, makeStyles, Toolbar, Typography } from '@material-ui/core'
 import MenuIcon from "@material-ui/icons/Menu";
-import { Link } from 'react-router-dom';
 
 
 const useStyles =  makeStyles((theme) => ({

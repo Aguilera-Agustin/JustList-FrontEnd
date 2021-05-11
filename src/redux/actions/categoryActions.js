@@ -1,4 +1,4 @@
-import { fetchWithoutToken, fetchWithToken } from '../../helpers/callApi'
+import {  fetchWithToken } from '../../helpers/callApi'
 import { types } from '../types/types'
 
 
@@ -8,7 +8,6 @@ export const startRetrieveCategories = ()=>{
         const res = await fetchWithToken('category')
         const body = await res.json()
         dispatch(loading('END'))
-        console.log(body);
         if(res.status===200){
             dispatch(retrieveCategories(body))
         }

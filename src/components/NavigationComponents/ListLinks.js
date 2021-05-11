@@ -45,7 +45,7 @@ export const ListLinks = ({setOpen}) => {
                     <List disablePadding className={classes.drawer}>
                 
                             {routes.map((item)=>(
-                                <ListItem button component={Link} to={`/category/${item.name}`} key={item.route} onClick={() => setOpen(false)}>
+                                <ListItem button component={Link} to={`/category/${item.name}`} key={item.name} onClick={() => setOpen(false)}>
                                 <ListItemText primary={item.name} />
                                 <div className={classes.color} style={{background:item.color}}/>
                                 </ListItem>
