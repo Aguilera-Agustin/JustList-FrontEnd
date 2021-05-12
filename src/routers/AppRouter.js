@@ -12,6 +12,7 @@ import { AuthPage } from '../containers/Auth/AuthPage';
 import { HomePage } from '../containers/Home/HomePage';
 import { startLoginWithToken } from '../redux/actions/authActions';
 import { NewCategory } from '../containers/Category/NewCategory'
+import { EachCategory } from '../containers/Category/EachCategory';
 const drawerWidth = 250;
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,6 +42,7 @@ export const AppRouter = () => {
                             <Switch>
                                 <Route path="/" exact component={HomePage} />
                                 <Route path='/categories/new' exact component={NewCategory}/>
+                                <Route path='/category/:_id' exact component={EachCategory}/>
                                 <Redirect to="/"/>
                             </Switch>
                         </div>

@@ -8,6 +8,10 @@ export const types ={
 
     catStartLoading : '[CATEGORY] Start Loading',
     catEndLoading : '[CATEGORY] End Loading',
-    catRetrieveCategories: '[CATEGORY] Retrieve all categories from user'
+    catRetrieveCategories: '[CATEGORY] Retrieve all categories from user',
+
+    noteRetrieveNotes : '[NOTES] Retrieve all notes from user/category',
+    noteStartLoading : '[NOTES] Start Loading',
+    noteEndLoading : '[NOTES] End Loading',
     
 }

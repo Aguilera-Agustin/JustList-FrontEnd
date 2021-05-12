@@ -65,7 +65,7 @@ export const ListLinks = ({setOpen}) => {
                     <List disablePadding className={classes.drawer}>
                             <Collapse in={openList} timeout="auto" unmountOnExit>
                                 {routes.map((item)=>(
-                                    <ListItem className={classes.eachCategory} button component={Link} to={`/category/${item.name}`} key={nextId()} onClick={() => setOpen(false)}>
+                                    <ListItem className={classes.eachCategory} button component={Link} to={`/category/${item._id}`} key={nextId()} onClick={() => setOpen(false)}>
                                     <ListItemText primary={item.name} />
                                     <div className={classes.color} style={{background:item.color}}/>
                                     </ListItem>
