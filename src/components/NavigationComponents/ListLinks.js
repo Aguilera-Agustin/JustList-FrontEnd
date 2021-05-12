@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 
+import nextId from "react-id-generator";
 import { Divider, List, ListItem, ListItemIcon, ListItemText, Typography } from '@material-ui/core'
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from 'react-router-dom';
@@ -45,7 +46,7 @@ export const ListLinks = ({setOpen}) => {
                     <List disablePadding className={classes.drawer}>
                 
                             {routes.map((item)=>(
-                                <ListItem button component={Link} to={`/category/${item.name}`} key={item.name} onClick={() => setOpen(false)}>
+                                <ListItem button component={Link} to={`/category/${item.name}`} key={nextId()} onClick={() => setOpen(false)}>
                                 <ListItemText primary={item.name} />
                                 <div className={classes.color} style={{background:item.color}}/>
                                 </ListItem>

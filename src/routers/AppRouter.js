@@ -29,9 +29,7 @@ export const AppRouter = () => {
     const classes = useStyles()
     const auth = useSelector(state => state.auth)
     useEffect(() => {
-        if (localStorage.getItem('token')) {
-            dispatch(startLoginWithToken())
-        }
+        dispatch(startLoginWithToken())
     }, [dispatch])
     return (
         <>

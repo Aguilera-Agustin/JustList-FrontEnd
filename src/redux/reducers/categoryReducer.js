@@ -1,7 +1,8 @@
 import { types } from '../types/types';
 
 const initialState = {
-    categories: null
+    categories: null,
+    loading:false
 }
 
 const categoryReducer = (state= initialState, action) => {

@@ -80,7 +80,6 @@ export const startLoginWithToken = () =>{
         dispatch(loading('END'))
         if(res.status===200){
             dispatch(login(body))
-            console.log("Se reenderizó el login con token");
         }
         dispatch(checkingEnd())
     }

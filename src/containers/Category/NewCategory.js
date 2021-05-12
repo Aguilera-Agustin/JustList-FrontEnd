@@ -1,10 +1,12 @@
 import { Button, makeStyles, Paper, TextField, Typography } from '@material-ui/core'
 import React, { useState } from 'react'
 import ColorPickerField  from 'material-ui-color-picker'
+import { useDispatch, useSelector } from 'react-redux'
+import { startAddCategory } from '../../redux/actions/categoryActions'
 
 const useStyles = makeStyles(theme=>({
     paper:{
-        width:'50%',
+        width:'40%',
         [theme.breakpoints.down("xs")]: { width: '80%' },
         position:'relative',
         margin:'auto',
@@ -41,25 +43,36 @@ const useStyles = makeStyles(theme=>({
 
 export const NewCategory = () => {
     const [myColor, setMyColor] = useState('#797070')
+    const [myName, setMyName] = useState('')
+    const dispatch = useDispatch()
+    const loading = useSelector(state => state.category.loading)
     const classes = useStyles()
+    const handleOnSubmit = (e)=>{
+        e.preventDefault()
+        dispatch(startAddCategory(myName,myColor))
+    }
+    const handleOnChange = (e) =>{
+        setMyName(e.target.value)
+    }
     return (
         <>
-            <Paper component={'form'} className={classes.paper}>
+            <Paper component={'form'} onSubmit={handleOnSubmit} className={classes.paper}>
                 <div className={classes.img}/>
                 <div className={classes.textContainer}>
                 <Typography align="center" variant="h6" className={classes.text}>
                     Category Creation
                 </Typography>
-                    <TextField id="standard-basic" style={{width:'100%'}} label="Name"/>
+                    <TextField autoComplete="off" disabled={loading} id="standard-basic" style={{width:'100%'}} label="Name" value={myName} onChange={handleOnChange}/>
                     <div className={classes.secondContainer}>
                         <ColorPickerField 
                         name='color'
+                        disabled={loading}
                         defaultValue='Color'
                         value={myColor}
                         onChange={color => setMyColor(color)}
                         className={classes.colorPicker}
                         />
-                            <Button variant='contained' color='primary' className={classes.button} >CREATE</Button>
+                        <Button type='submit' disabled={loading} variant='contained' color='primary' className={classes.button} >CREATE</Button>
                     </div>
                 </div>
             </Paper>
