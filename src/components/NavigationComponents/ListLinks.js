@@ -10,6 +10,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import CategoryIcon from '@material-ui/icons/Category';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import { startLogout } from '../../redux/actions/authActions';
 
 
 
@@ -79,7 +80,7 @@ export const ListLinks = ({setOpen}) => {
                             </ListItem>
                     
                         <Divider/>
-                        <ListItem button key={"logoutButton"}>
+                        <ListItem button key={"logoutButton"} onClick={()=>dispatch(startLogout())}>
                             <ListItemText primary={"Logout"} />
                         </ListItem>
                     </List>

@@ -88,3 +88,15 @@ export const startLoginWithToken = () =>{
 export const checkingEnd = ()=>({
     type: types.authCheckingEnd
 })
+
+
+export const startLogout = () =>{
+    return (dispatch) => {
+        localStorage.clear()
+        dispatch(logout())
+    }
+}
+
+const logout = () =>({
+    type: types.authLogout
+})
