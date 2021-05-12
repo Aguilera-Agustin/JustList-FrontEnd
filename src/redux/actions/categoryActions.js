@@ -38,7 +38,6 @@ export const deleteCategory = (catId)=>{
     return async(dispatch)=>{
         dispatch(loading('START'))
         const res = await fetchWithToken(`category/${catId}`, {}, 'DELETE')
-        const body = await res.json()
         dispatch(loading('END'))
         if(res.status===200){
             dispatch(startRetrieveCategories())

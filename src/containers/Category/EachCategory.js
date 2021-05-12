@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { modifyNote, startCreateNote, startLoadNotes } from '../../redux/actions/noteActions';
 import { deleteCategory } from '../../redux/actions/categoryActions';
-import { Redirect, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import nextId from "react-id-generator";
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
@@ -65,7 +65,6 @@ export const EachCategory = () => {
     const [content, setContent] = React.useState('')
     const [modify, setModify] = React.useState(false)
     const [modifyId, setModifyId] = React.useState('')
-    const [deletedStatus, setDeletedStatus] = React.useState(false)
     
 
 
