@@ -14,6 +14,10 @@ const authReducer = (state= initialState, action) => {
                 name: action.payload.name,
                 checking:false
             }
+        case types.authLogout:
+            return {
+                initialState
+            }
         case types.authStartLoading:
             return{
                 ...state,

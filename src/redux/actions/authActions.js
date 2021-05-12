@@ -79,13 +79,24 @@ export const startLoginWithToken = () =>{
         const body = await res.json()
         dispatch(loading('END'))
         if(res.status===200){
-            dispatch(checkingEnd())
             dispatch(login(body))
-            console.log("Se reenderizó el login con token");
         }
+        dispatch(checkingEnd())
     }
 }
 
 export const checkingEnd = ()=>({
     type: types.authCheckingEnd
+})
+
+
+export const startLogout = () =>{
+    return (dispatch) => {
+        localStorage.clear()
+        dispatch(logout())
+    }
+}
+
+const logout = () =>({
+    type: types.authLogout
 })

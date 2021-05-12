@@ -1,7 +1,6 @@
 import React from 'react'
-import { AppBar, Button, IconButton, makeStyles, Toolbar, Typography } from '@material-ui/core'
+import { AppBar, IconButton, makeStyles, Toolbar, Typography } from '@material-ui/core'
 import MenuIcon from "@material-ui/icons/Menu";
-import { Link } from 'react-router-dom';
 
 
 const useStyles =  makeStyles((theme) => ({
@@ -17,7 +16,7 @@ const useStyles =  makeStyles((theme) => ({
 export const Navbar = ({setOpen}) => {
     const classes = useStyles()
     return (
-        <AppBar position="static" color="secondary">
+        <AppBar position="static" color="primary">
             <Toolbar>
             <IconButton edge="start" className={classes.menuButton} onClick={() => setOpen(true)}  color="inherit"> 
                 <MenuIcon />
@@ -25,7 +24,6 @@ export const Navbar = ({setOpen}) => {
             <Typography variant="h6" className={classes.title}>
                 JUST LIST
             </Typography>
-            <Button component={Link} to="/shifts" color="inherit">New Shift</Button>
             </Toolbar>
         </AppBar>
     )

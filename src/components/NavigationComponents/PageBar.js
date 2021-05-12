@@ -1,6 +1,5 @@
 import React from 'react'
-import {  Button, Hidden, makeStyles, Toolbar, Typography } from '@material-ui/core'
-import { Link } from 'react-router-dom';
+import {  Hidden, makeStyles, Toolbar, Typography } from '@material-ui/core'
 
 const useStyles =  makeStyles((theme) => ({
     menuButton: {
@@ -10,7 +9,7 @@ const useStyles =  makeStyles((theme) => ({
         marginRight: "auto",
       },
 }))
-export const PageBar = ({title,buttonRequired}) => {
+export const PageBar = ({title}) => {
     
     const classes = useStyles()
   
@@ -20,14 +19,7 @@ export const PageBar = ({title,buttonRequired}) => {
                 <Toolbar>
                 <Typography variant="h4" className={classes.title}>
                     {title}
-                </Typography>
-               
-            
-                {(
-                 buttonRequired&&(<Button component={Link} to="/shifts" color="secondary" variant="contained">
-                    Generate new Shift
-                </Button>))}
-                
+                </Typography>                
                 </Toolbar>
       
         </Hidden>
