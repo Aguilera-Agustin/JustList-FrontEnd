@@ -11,7 +11,7 @@ import { NavDrawer } from '../components/NavigationComponents/NavDrawer';
 import { AuthPage } from '../containers/Auth/AuthPage';
 import { HomePage } from '../containers/Home/HomePage';
 import { startLoginWithToken } from '../redux/actions/authActions';
-
+import { NewCategory } from '../containers/Category/NewCategory'
 const drawerWidth = 250;
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,6 +42,7 @@ export const AppRouter = () => {
                             <NavDrawer className={classes.root}/>
                             <Switch>
                                 <Route path="/" exact component={HomePage} />
+                                <Route path='/categories/new' exact component={NewCategory}/>
                                 <Redirect to="/"/>
                             </Switch>
                         </div>
