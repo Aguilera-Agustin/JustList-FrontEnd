@@ -41,9 +41,34 @@ const fetchWithToken = ( endpoint, data, method = 'GET' ) => {
     }
 }
 
+const fetchWithTokenAndParams = ( endpoint, data, method = 'GET', params ) => {
+
+    const url = `${ baseUrl }/${ endpoint }`;
+    const token = localStorage.getItem('token') || '';
+
+    if ( method === 'GET' ) {
+        return fetch( url + new URLSearchParams(params), {
+            method,
+            headers: {
+                'x-token': token
+            }
+        });
+    } else {
+        return fetch( url + new URLSearchParams(params), {
+            method,
+            headers: {
+                'Content-type': 'application/json',
+                'x-token': token
+            },
+            body: JSON.stringify( data )
+        });
+    }
+}
+
 
 
 export {
     fetchWithoutToken,
-    fetchWithToken
+    fetchWithToken,
+    fetchWithTokenAndParams
 }
