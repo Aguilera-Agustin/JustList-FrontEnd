@@ -5,7 +5,6 @@ import Swal from 'sweetalert2'
 
 export const startRetrieveCategories = ()=>{
     return async (dispatch) =>{
-        console.log("Entro");
         dispatch(loading('START'))
         const res = await fetchWithToken('category')
         const body = await res.json()

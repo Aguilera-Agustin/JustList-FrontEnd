@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react'
 
 import nextId from "react-id-generator";
-import { Divider, List, ListItem, ListItemIcon, ListItemText, Typography } from '@material-ui/core'
+import { Collapse, Divider, List, ListItem, ListItemIcon, ListItemText, Typography } from '@material-ui/core'
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { startRetrieveCategories } from '../../redux/actions/categoryActions';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import CategoryIcon from '@material-ui/icons/Category';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+
 
 
 const drawerWidth = 250;
@@ -18,7 +22,10 @@ const useStyles = makeStyles((theme) => ({
     color:{
         width:'1rem',
         height:'0.3rem',
-    }
+    },
+    eachCategory: {
+        paddingLeft: theme.spacing(4),
+      },
 
 }))
 
@@ -30,6 +37,10 @@ export const ListLinks = ({setOpen}) => {
     const username = useSelector(state => state.auth.name)
     const classes = useStyles()
     const routes = useSelector(state => state.category.categories)
+    const [openList, setOpenList] = React.useState(false);
+    const handleClick = () => {
+        setOpenList(!openList);
+    };
     return (
         <>
             {routes&& (
@@ -43,14 +54,22 @@ export const ListLinks = ({setOpen}) => {
                         </Typography>
                     </div>
                     <Divider />
+                    <ListItem button onClick={handleClick}>
+                        <ListItemIcon>
+                        <CategoryIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Categories" />
+                        {openList ? <ExpandLess /> : <ExpandMore />}
+                    </ListItem>
                     <List disablePadding className={classes.drawer}>
-                
-                            {routes.map((item)=>(
-                                <ListItem button component={Link} to={`/category/${item.name}`} key={nextId()} onClick={() => setOpen(false)}>
-                                <ListItemText primary={item.name} />
-                                <div className={classes.color} style={{background:item.color}}/>
-                                </ListItem>
-                            ))}
+                            <Collapse in={openList} timeout="auto" unmountOnExit>
+                                {routes.map((item)=>(
+                                    <ListItem className={classes.eachCategory} button component={Link} to={`/category/${item.name}`} key={nextId()} onClick={() => setOpen(false)}>
+                                    <ListItemText primary={item.name} />
+                                    <div className={classes.color} style={{background:item.color}}/>
+                                    </ListItem>
+                                ))}
+                            </Collapse>
                             <Divider/>
                             <ListItem button component={Link} to='/categories/new' onClick={() => setOpen(false)}>
                                 <ListItemIcon>
