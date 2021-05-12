@@ -34,11 +34,28 @@ export const loading = (type) =>{
     }
 }
 
+export const deleteCategory = (catId)=>{
+    return async(dispatch)=>{
+        dispatch(loading('START'))
+        const res = await fetchWithToken(`category/${catId}`, {}, 'DELETE')
+        const body = await res.json()
+        dispatch(loading('END'))
+        if(res.status===200){
+            dispatch(startRetrieveCategories())
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Your Category was deleted successfully!',
+            })
+        }
+    }
+} 
+
 export const startAddCategory = (name, color) =>{
     return async (dispatch) =>{
-        dispatch(loading('START'))
         const res = await fetchWithToken('category', {color,name}, 'POST')
         const body = await res.json()
+        dispatch(loading('START'))
         if(res.status>300){
             Swal.fire({
                 icon: 'error',

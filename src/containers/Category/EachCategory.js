@@ -5,8 +5,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { modifyNote, startCreateNote, startLoadNotes } from '../../redux/actions/noteActions';
-import { useParams } from 'react-router';
+import { deleteCategory } from '../../redux/actions/categoryActions';
+import { Redirect, useParams } from 'react-router';
 import nextId from "react-id-generator";
+import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme)=>({
@@ -62,7 +65,10 @@ export const EachCategory = () => {
     const [content, setContent] = React.useState('')
     const [modify, setModify] = React.useState(false)
     const [modifyId, setModifyId] = React.useState('')
+    const [deletedStatus, setDeletedStatus] = React.useState(false)
     
+
+
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(startLoadNotes({_id}))
@@ -87,12 +93,28 @@ export const EachCategory = () => {
         }
     }
 
+    const handleDelete = () =>{
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(deleteCategory(_id))
+            }
+          })
+    }
 
     return (
+        
         <div style={{width: '100%'}}>
             <Paper className={classes.container} component='form' onSubmit={handleOnSubmit}>
                 <div className={classes.img}>
-                <IconButton aria-label="delete" style={{color: 'white'}}>
+                <IconButton component={Link} to='/' onClick={handleDelete} aria-label="delete" style={{color: 'white'}}>
                     <DeleteIcon />
                 </IconButton>
                 </div>
