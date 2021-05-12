@@ -1,5 +1,7 @@
-import { Button, makeStyles, Typography } from '@material-ui/core'
 import React from 'react'
+import { Button, makeStyles, Typography } from '@material-ui/core'
+import { Link } from 'react-router-dom';
+
 
 const useStyles = makeStyles({
     container : {
@@ -27,7 +29,7 @@ export const HomePage = () => {
                 <Typography variant="h3" style={{fontWeight:100}} color="textPrimary" align='center'>Welcome!</Typography>
                 <Typography align='center' color='textSecondary' variant='body2'>just simplicity, just tasks, <b>just list</b>.</Typography>
                 <div className={classes.buttonContainer}>
-                    <Button variant='contained' color='primary'>Explore JustList</Button>
+                    <Button component={Link} to='/categories/new' variant='contained' color='primary'>Explore JustList</Button>
                 </div>
                 </div>
             </div>
