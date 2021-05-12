@@ -97,7 +97,7 @@ export const EachCategory = () => {
                         !loading&&
                                 notes.map(eachNote=>(
                                     <Grid item md={3} xs={12} key={nextId()} style={{margin: '0.5rem'}}>
-                                        <Note title={eachNote.title} content={eachNote.content}/>
+                                        <Note note={eachNote} category={_id}/>
                                     </Grid>
                                 ))
                     }

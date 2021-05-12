@@ -1,5 +1,8 @@
 import { Button, Divider, makeStyles, Paper, Typography } from '@material-ui/core'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import Swal from 'sweetalert2'
+import { deleteNote } from '../../redux/actions/noteActions'
 
 const useStyles = makeStyles({
     paper:{
@@ -11,7 +14,27 @@ const useStyles = makeStyles({
     }
 })
 
-export const Note = ({title, content}) => {
+
+export const Note = ({note,category}) => {
+    const {_id, title, content} = note
+    const dispatch = useDispatch()
+    const showDeleteMsg = () =>{
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              dispatch(deleteNote(_id,category))
+              
+            }
+          })
+    }
+
     const classes = useStyles()
     return (
         <Paper className={classes.paper}>
@@ -24,7 +47,7 @@ export const Note = ({title, content}) => {
             </Typography>
             <Divider style={{marginTop:'0.5rem', marginBottom:'0.5rem'}} />
             <div className={classes.buttonContainer}>
-                <Button variant='outlined' color='secondary' size='small'>Delete</Button>
+                <Button variant='outlined' color='secondary' size='small' onClick={showDeleteMsg}>Delete</Button>
                 <Button variant='outlined' color='primary' size='small'>Modify</Button>
             </div>
         </Paper>

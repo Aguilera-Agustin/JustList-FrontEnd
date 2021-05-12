@@ -43,6 +43,28 @@ export const startCreateNote = ({title, content, _id}) =>{
     }
 }
 
+export const deleteNote = (id,category) =>{
+    return async(dispatch) =>{
+        const res = await fetchWithToken('notes',{note:id},'DELETE')
+        const body = await res.json()
+        if(res.status===202){
+            dispatch(startLoadNotes({_id:category}))
+            Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              )
+        }
+        else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: body.errors[0].msg,
+            })
+        }
+    }
+}
+
 export const retrieveNotes = (body) => ({
     type: types.noteRetrieveNotes,
     payload: body
