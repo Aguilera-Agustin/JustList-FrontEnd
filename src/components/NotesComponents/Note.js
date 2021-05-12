@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 })
 
 
-export const Note = ({note,category}) => {
+export const Note = ({note,category, setModify, setContent, setTitle, setModifyId}) => {
     const {_id, title, content} = note
     const dispatch = useDispatch()
     const showDeleteMsg = () =>{
@@ -29,10 +29,17 @@ export const Note = ({note,category}) => {
             confirmButtonText: 'Yes, delete it!'
           }).then((result) => {
             if (result.isConfirmed) {
-              dispatch(deleteNote(_id,category))
-              
+                setModify(false)
+                dispatch(deleteNote(_id,category))
             }
           })
+    }
+
+    const handleOnModify = () => {
+        setModify(true)
+        setModifyId(_id)
+        setContent(content)
+        setTitle(title)
     }
 
     const classes = useStyles()
@@ -48,7 +55,7 @@ export const Note = ({note,category}) => {
             <Divider style={{marginTop:'0.5rem', marginBottom:'0.5rem'}} />
             <div className={classes.buttonContainer}>
                 <Button variant='outlined' color='secondary' size='small' onClick={showDeleteMsg}>Delete</Button>
-                <Button variant='outlined' color='primary' size='small'>Modify</Button>
+                <Button variant='outlined' color='primary' size='small' onClick={handleOnModify}>Modify</Button>
             </div>
         </Paper>
     )
