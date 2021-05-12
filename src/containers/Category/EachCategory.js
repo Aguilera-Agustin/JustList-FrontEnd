@@ -4,7 +4,7 @@ import { Note } from '../../components/NotesComponents/Note'
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { startLoadNotes } from '../../redux/actions/noteActions';
+import { startCreateNote, startLoadNotes } from '../../redux/actions/noteActions';
 import { useParams } from 'react-router';
 import nextId from "react-id-generator";
 
@@ -58,13 +58,23 @@ export const EachCategory = () => {
     const classes = useStyles()
     const {_id} = useParams()
     const {loading, notes} = useSelector(state => state.note)
+    const [title, setTitle] = React.useState('')
+    const [content, setContent] = React.useState('')
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(startLoadNotes({categoryId: _id}))
+        dispatch(startLoadNotes({_id}))
     }, [dispatch, _id])
+
+
+    const handleOnSubmit = (e) =>{
+        e.preventDefault()
+        dispatch(startCreateNote({title,content,_id}))
+    }
+
+
     return (
         <div style={{width: '100%'}}>
-            <Paper className={classes.container}>
+            <Paper className={classes.container} component='form' onSubmit={handleOnSubmit}>
                 <div className={classes.img}>
                 <IconButton aria-label="delete" style={{color: 'white'}}>
                     <DeleteIcon />
@@ -74,8 +84,8 @@ export const EachCategory = () => {
                 <Typography align="center" variant="h6" className={classes.text}>
                     Create Note
                 </Typography>
-                <TextField autoComplete="off" variant='outlined' id="standard-basic" className={classes.title} label="Title"/>
-                <TextField variant="outlined" placeholder='Content' multiline rows={2} rowsMax={2}/>
+                <TextField autoComplete="off" variant='outlined'  value={title} onChange={(e)=>setTitle(e.target.value)} className={classes.title} label="Title"/>
+                <TextField variant="outlined" value={content} onChange={(e)=>setContent(e.target.value)} placeholder='Content' multiline rows={2} rowsMax={2}/>
                 </div>
                 <div className={classes.buttonContainer}>
                     <Button variant='contained' type='submit' color='primary' className={classes.button}>Submit</Button>

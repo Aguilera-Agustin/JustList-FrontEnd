@@ -54,7 +54,7 @@ const fetchWithTokenAndParams = ( endpoint, data, method = 'GET', params ) => {
             }
         });
     } else {
-        return fetch( url, {
+        return fetch( url + new URLSearchParams(params), {
             method,
             headers: {
                 'Content-type': 'application/json',
