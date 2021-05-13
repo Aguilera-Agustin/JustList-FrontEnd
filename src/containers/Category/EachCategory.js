@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme)=>({
     container:{
         width:'50%',
         margin:'auto',
+        [theme.breakpoints.down("xs")]: {
+          width:'90%'  
+        },
         marginTop:'1rem',
         display:'block',
         paddingBottom:'0.3rem',
