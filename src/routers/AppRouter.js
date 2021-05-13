@@ -34,7 +34,7 @@ export const AppRouter = () => {
     }, [dispatch])
     return (
         <>
-            {!auth.checking&&(
+            {!auth.checking?(
                 <Router>
                     {auth.email ? (
                         <div className={classes.flex}>
@@ -55,6 +55,10 @@ export const AppRouter = () => {
                         )
                     }
                 </Router>
+             ):(
+                 <div>
+                     Loading...
+                 </div>
              )}
         </>
     )
